@@ -31,5 +31,15 @@ services:
     volumes:
       - '.:/snakeeyes'
 
+  flower:
+    build: .
+    command: celery flower -A snakeeyes.blueprints.contact.tasks
+    env_file:
+      - '.env'
+    volumes:
+      - '.:/snakeeyes'
+    ports:
+      - '5555:5555'
+
 volumes:
   redis:

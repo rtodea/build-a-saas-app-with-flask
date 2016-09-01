@@ -17,10 +17,14 @@ def deliver_contact_email(email, message):
     """
     ctx = {'email': email, 'message': message}
 
-    send_template_message(subject='[Snake Eyes] Contact',
-                          sender=email,
-                          recipients=[celery.conf.get('MAIL_USERNAME')],
-                          reply_to=email,
-                          template='contact/mail/index', ctx=ctx)
+    print 'deliver_contact_email'
+    print ctx
+
+    # TODO: fix email sending
+    # send_template_message(subject='[Snake Eyes] Contact',
+    #                       sender=email,
+    #                       recipients=[celery.conf.get('MAIL_USERNAME')],
+    #                       reply_to=email,
+    #                       template='contact/mail/index', ctx=ctx)
 
     return None
