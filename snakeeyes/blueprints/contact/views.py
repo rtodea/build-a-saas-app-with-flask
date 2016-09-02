@@ -17,10 +17,11 @@ def index():
 
     if form.validate_on_submit():
         # This prevents circular imports.
-        from snakeeyes.blueprints.contact.tasks import deliver_contact_email
+        from snakeeyes.blueprints.contact.tasks import deliver_contact_email, print_hello
 
         deliver_contact_email.delay(request.form.get('email'),
                                     request.form.get('message'))
+        print_hello.delay()
 
         flash('Thanks, expect a response shortly.', 'success')
         return redirect(url_for('contact.index'))

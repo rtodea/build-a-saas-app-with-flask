@@ -27,4 +27,10 @@ def deliver_contact_email(email, message):
     #                       reply_to=email,
     #                       template='contact/mail/index', ctx=ctx)
 
-    return None
+    return 'deliver-email-return-value'
+
+
+@celery.task()
+def print_hello():
+    print 'hello'
+    return 'hello-return-value'
