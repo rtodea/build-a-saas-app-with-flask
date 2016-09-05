@@ -2,8 +2,8 @@ from flask import Flask
 from celery import Celery
 
 from snakeeyes.blueprints.page import page
-from snakeeyes.blueprints.contact import contact
-from snakeeyes.extensions import debug_toolbar, mail, csrf
+from snakeeyes.blueprints.api import api
+from snakeeyes.extensions import debug_toolbar, mail#, csrf
 
 CELERY_TASK_LIST = [
     'snakeeyes.blueprints.contact.tasks',
@@ -52,13 +52,14 @@ def create_app(settings_override=None):
         app.config.update(settings_override)
 
     app.register_blueprint(page)
-    app.register_blueprint(contact)
-    extensions(app)
+    # app.register_blueprint(contact)
+    app.register_blueprint(api, url_prefix='/api')
+    add_extensions(app)
 
     return app
 
 
-def extensions(app):
+def add_extensions(app):
     """
     Register 0 or more extensions (mutates the app passed in).
 
@@ -67,6 +68,6 @@ def extensions(app):
     """
     debug_toolbar.init_app(app)
     mail.init_app(app)
-    csrf.init_app(app)
+    # csrf.init_app(app)
 
     return None

@@ -25,7 +25,7 @@ services:
 
   celery:
     build: .
-    command: celery worker -l info -A snakeeyes.blueprints.contact.tasks
+    command: celery worker -l info -A snakeeyes.blueprints.api.tasks
     env_file:
       - '.env'
     volumes:
@@ -33,7 +33,7 @@ services:
 
   flower:
     build: .
-    command: celery flower -A snakeeyes.blueprints.contact.tasks
+    command: celery flower -A snakeeyes.blueprints.api.tasks
     env_file:
       - '.env'
     volumes:
