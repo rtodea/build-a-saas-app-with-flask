@@ -13,3 +13,8 @@ def deliver_email(email):
 def print_hello():
     print 'hello'
     return 'hello-return-value'
+
+@celery.task()
+def add(first, second):
+    print 'adding:' + str(first) + ' ' + str(second)
+    return int(first) + int(second)

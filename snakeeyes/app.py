@@ -6,7 +6,7 @@ from snakeeyes.blueprints.api import api
 from snakeeyes.extensions import debug_toolbar, mail#, csrf
 
 CELERY_TASK_LIST = [
-    'snakeeyes.blueprints.contact.tasks',
+    'snakeeyes.blueprints.api.tasks',
 ]
 
 
